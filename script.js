@@ -1,4 +1,4 @@
-// Motor Financeiro - Regra 50/30/20 para o Só Fluxo
+// Motor Financeiro fluxo - Regra 50/30/20 para o Só Fluxo
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Só Fluxo MVP inicializado com sucesso.");
 
