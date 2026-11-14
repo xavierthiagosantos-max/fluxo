@@ -1,50 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Fluxo - Gestão Financeira Inteligente</title>
+    <title>Fluxo | Gestão Financeira Inteligente 50/30/20</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <header>
-        <h1> Fluxo</h1>
-        <p>Seu analista financeiro pessoal baseado na Regra 50/30/20</p>
+<body>
+    <header class="topbar">
+        <div class="container header-content">
+            <div>
+                <h1> Fluxo</h1>
+                <p>Controle financeiro e divisão inteligente 50/30/20 para MEIs e Freelancers</p>
+            </div>
+            <button id="btn-limpar-tudo" class="btn-outline" title="Apagar todos os dados">Resetar Dados</button>
+        </div>
     </header>
 
-    <main>
-        <section>
-            <h2>Painel de Controle do MVP</h2>
-            <div>
-                <h3>Gastos Essenciais (50%)</h3>
-                <p>R$ 0,00</p>
-            </div>
-            <div>
-                <h3>Estilo de Vida / Lazer (30%)</h3>
-                <p>R$ 0,00</p>
-            </div>
-            <div>
-                <h3>Investimentos / Dívidas (20%)</h3>
-                <p>R$ 0,00</p>
+    <main class="container">
+        <!-- Seção de Definição de Receita -->
+        <section class="card income-panel">
+            <h2>1. Defina sua Receita Mensal</h2>
+            <div class="income-form">
+                <div class="input-group">
+                    <label for="renda-input">Faturamento / Receita Líquida (R$)</label>
+                    <input type="number" id="renda-input" placeholder="Ex: 5000.00" step="0.01" min="0">
+                </div>
+                <button id="btn-calcular" class="btn-primary">Calcular Divisão 50/30/20</button>
             </div>
         </section>
 
-        <section>
-            <h2>Sobre o Projeto</h2>
-            <p>O <strong>Fluxo</strong> é uma ferramenta de gestão financeira projetada especificamente para MEIs e freelancers, automatizando o controle de entradas e saídas com alertas proativos para manter a saúde financeira organizada.</p>
-            
-            <h3>Funcionalidades do Projeto:</h3>
-            <ul>
-                <li>Divisão automática de orçamento (Metodologia 50/30/20).</li>
-                <li>Dashboard interativo para acompanhamento de fluxo de caixa.</li>
-                <li>Alertas inteligentes para controle de despesas e lucros.</li>
-            </ul>
+        <!-- Painel de Metas e Consumo -->
+        <section class="dashboard-grid">
+            <div class="card stat-card essencial">
+                <div class="stat-header">
+                    <h3>Gastos Essenciais (50%)</h3>
+                    <span class="badge">Necessidades</span>
+                </div>
+                <p class="meta-label">Meta: <strong id="meta-essencial">R$ 0,00</strong></p>
+                <p class="gasto-label">Gasto atual: <strong id="gasto-essencial">R$ 0,00</strong></p>
+                <div class="progress-bar">
+                    <div id="bar-essencial" class="progress-fill"></div>
+                </div>
+                <small id="alerta-essencial" class="status-text">Dentro do orçamento</small>
+            </div>
+
+            <div class="card stat-card lazer">
+                <div class="stat-header">
+                    <h3>Estilo de Vida (30%)</h3>
+                    <span class="badge">Desejos</span>
+                </div>
+                <p class="meta-label">Meta: <strong id="meta-lazer">R$ 0,00</strong></p>
+                <p class="gasto-label">Gasto atual: <strong id="gasto-lazer">R$ 0,00</strong></p>
+                <div class="progress-bar">
+                    <div id="bar-lazer" class="progress-fill"></div>
+                </div>
+                <small id="alerta-lazer" class="status-text">Dentro do orçamento</small>
+            </div>
+
+            <div class="card stat-card investimentos">
+                <div class="stat-header">
+                    <h3>Futuro e Dívidas (20%)</h3>
+                    <span class="badge">Reserva / Quitação</span>
+                </div>
+                <p class="meta-label">Meta: <strong id="meta-investimentos">R$ 0,00</strong></p>
+                <p class="gasto-label">Alocado: <strong id="gasto-investimentos">R$ 0,00</strong></p>
+                <div class="progress-bar">
+                    <div id="bar-investimentos" class="progress-fill"></div>
+                </div>
+                <small id="alerta-investimentos" class="status-text">Acompanhe sua meta</small>
+            </div>
+        </section>
+
+        <!-- Lançamento de Despesas / Alocações -->
+        <section class="content-split">
+            <div class="card">
+                <h2>2. Registrar Movimentação</h2>
+                <form id="form-lancamento">
+                    <div class="input-group">
+                        <label for="desc-input">Descrição</label>
+                        <input type="text" id="desc-input" placeholder="Ex: Aluguel, Internet, Reserva..." required>
+                    </div>
+                    <div class="input-group">
+                        <label for="valor-input">Valor (R$)</label>
+                        <input type="number" id="valor-input" placeholder="0.00" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="categoria-input">Categoria (Regra 50/30/20)</label>
+                        <select id="categoria-input" required>
+                            <option value="essencial">Essenciais (50%) - Contas, Moradia, DAS MEI</option>
+                            <option value="lazer">Estilo de Vida (30%) - Lazer, Assinaturas, Extras</option>
+                            <option value="investimentos">Futuro / Dívidas (20%) - Reserva, Investimentos</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="data-input">Data</label>
+                        <input type="date" id="data-input" required>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">+ Adicionar Lançamento</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="list-header">
+                    <h2>Histórico de Lançamentos</h2>
+                    <span id="saldo-restante" class="saldo-pill">Saldo Livre: R$ 0,00</span>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-lancamentos">
+                            <!-- Preenchido via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Fluxo - Projeto de Software MVP.</p>
+        <p>Só Fluxo &copy; 2026 - MVP de Gestão Financeira Inteligente</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
+
 </html>
